@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;700&display=swap');
+
+.background {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-primary);
+
+    .headerImgOne,
+    .headerImgTwo {
+        width: 120px;
+    }
+
+    .imageContainerLeft {
+        .headerImgOne {
+            translate: 50px 5px;
+            rotate: 10deg;
+        }
+
+        .headerImgTwo {
+            translate: 10px 40px;
+            rotate: 10deg;
+        }
+    }
+
+    .imageContainerRight {
+        .headerImgOne {
+            translate: -10px 40px;
+            rotate: -10deg;
+            /* transform: translate(-10px, 40px); */
+
+        }
+
+        .headerImgTwo {
+            translate: -50px 5px;
+            rotate: -10deg;
+        }
+    }
+}
+
+.header {
+    /* padding: 0 22px; */
+
+
+    .headerList {
+        display: flex;
+        justify-content: space-around;
+        /* margin: 0 150px; */
+
+        .headerListItem {
+
+            a {
+                font-size: 24px;
+                font-family: "Palanquin Dark", sans-serif;
+                text-shadow: var(--mainTextShadow);
+            }
+
+            &:nth-child(2) {
+                margin: 0 168px;
+            }
+        }
+    }
+}
