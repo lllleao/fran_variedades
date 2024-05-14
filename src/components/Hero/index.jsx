@@ -1,12 +1,63 @@
-import { useState } from 'react'
-
 import style from './Hero.module.css'
+import { Buttons } from '../../containers/SlideButton/styleButtons'
+import { ImageSlide } from '../../containers/SlideImage/styleImgSlide'
+import { useEffect, useRef, useState } from 'react'
+import propTypes from 'prop-types'
 
+// eslint-disable-next-line react/prop-types
 const Hero = ({ images }) => {
+
     const [contador, setContador] = useState(0)
 
-    const move = (e) => {
-        setContador()
+    const elementos = useRef()
+    const elementosCheck = useRef()
+
+
+    useEffect(() => {
+        const autoMove = () => {
+            if (contador === 2) {
+                setContador(0)
+            } else {
+                setContador(item => item + 1)
+            }
+            console.log(contador);
+
+            const inputs = elementosCheck.current.querySelectorAll('input')
+
+            const spans = elementos.current.querySelectorAll('span')
+            const spanFilho = inputs[contador].labels[0].childNodes[0]
+
+            for (let i = 0; i < spans.length; i++) {
+                spans[i].classList.remove('backFFF')
+            }
+
+            spanFilho.classList.add('backFFF')
+            inputs[contador].checked = true
+
+        };
+
+        const intervalId = setInterval(autoMove, 3000);
+
+        // Limpeza na desmontagem
+        return () => clearInterval(intervalId);
+    }, [contador]);
+
+
+    // console.log(contador)
+
+    const spanChange = (e) => {
+        const spans = elementos.current.querySelectorAll('span')
+        const spanFilho = e.target.labels[0].childNodes[0]
+
+        for (let i = 0; i < spans.length; i++) {
+            spans[i].classList.remove('backFFF')
+        }
+
+        spanFilho.classList.add('backFFF')
+    }
+
+    const spanBack = (e) => {
+        e.target.classList.add('backFFF')
     }
 
     return (
@@ -19,38 +70,49 @@ const Hero = ({ images }) => {
                     <button className={style.heroButton} type="button">GARANTA JÁ O SEU</button>
                 </div>
                 <div className={style.heroCarrossel}>
-                    <div className={style.slides}>
-                        <input className={style.slide1} type="radio" name="slide" id="slide1" />
-                        <input className={style.slide2} type="radio" name="slide" id="slide2" />
-                        <input className={style.slide3} type="radio" name="slide" id="slide3" />
+                    <ImageSlide ref={elementosCheck}>
 
 
-                        <img className={`${style.heroCarrosselImg} ${contador === 1? move(): ''}`} srcSet={images[0]} alt="" />
-                        <img className={`${style.heroCarrosselImg}`} srcSet={images[0]} alt="" />
-                        <img className={`${style.heroCarrosselImg}`} srcSet={images[0]} alt="" />
-                    </div>
-                    <div className={style.slideButton}>
-                        <label className={style.label1} htmlFor="slide1">
-                            <span>
+                        <input onClick={spanChange} className="slide1" type="radio" name="slide" id="slide1" />
+
+                        <input onClick={spanChange} className="slide2" type="radio" name="slide" id="slide2" />
+
+                        <input onClick={spanChange} className="slide3" type="radio" name="slide" id="slide3" />
+
+
+                        {
+                            images.map(item => (
+                                <img key={item} srcSet={item} alt="Foto de uma caneca" />
+                            ))
+                        }
+                    </ImageSlide>
+                    <Buttons ref={elementos}>
+
+                        <label htmlFor={`slide1`}>
+                            <span onClick={spanBack} className='backFFF'>
+                            </span>
+                        </label>
+                        <label htmlFor={`slide2`}>
+                            <span onClick={spanBack}>
 
                             </span>
                         </label>
-                        <label className={style.label2} htmlFor="slide2">
-                            <span>
+                        <label htmlFor={`slide3`}>
+                            <span onClick={spanBack}>
 
                             </span>
                         </label>
-                        <label className={style.label3} htmlFor="slide3">
-                        <span>
 
-                        </span>
-                        </label>
-                    </div>
+                    </Buttons>
                 </div>
             </div>
         </section>
 
     )
+}
+
+Hero.propTypes = {
+    images: propTypes.arrayOf(propTypes.string).isRequired
 }
 
 export default Hero

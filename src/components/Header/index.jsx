@@ -1,5 +1,6 @@
 import style from './Header.module.css'
 
+// eslint-disable-next-line react/prop-types
 const Hero = ({ images }) => {
 
     const nav = ['Início', 'Produtos', 'Fale Conosco']
