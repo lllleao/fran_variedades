@@ -3,7 +3,13 @@
 .background {
     display: flex;
     align-items: center;
-    background-color: var(--background-primary);
+    justify-content: space-around;
+
+    .logo {
+        img {
+            width: 200px;
+        }
+    }
 
     .headerImgOne,
     .headerImgTwo {
@@ -11,6 +17,10 @@
     }
 
     .imageContainerLeft {
+        @media (max-width: 768px) {
+            display: none;
+        }
+
         .headerImgOne {
             translate: 50px 5px;
             rotate: 10deg;
@@ -23,6 +33,10 @@
     }
 
     .imageContainerRight {
+        @media (max-width: 768px) {
+            display: none;
+        }
+
         .headerImgOne {
             translate: -10px 40px;
             rotate: -10deg;
@@ -37,16 +51,34 @@
     }
 }
 
-.header {
+.navheader {
     /* padding: 0 22px; */
 
 
-    .headerList {
+    .navheaderList {
+        padding: 18px;
         display: flex;
         justify-content: space-around;
+        border: 2px solid #fff;
+        border-radius: 16px;
         /* margin: 0 150px; */
 
-        .headerListItem {
+        .navheaderListItem {
+
+
+            &:nth-child(2) {
+                position: relative;
+
+                a::after {
+                    position: absolute;
+                    content: '>';
+                    display: inline-block;
+                    font-size: 32px;
+                    margin-left: 12px;
+                    transform: rotate(90deg);
+                    text-shadow: none;
+                }
+            }
 
             a {
                 font-size: 24px;

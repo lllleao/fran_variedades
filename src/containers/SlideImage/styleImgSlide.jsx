@@ -2,9 +2,17 @@ import styled from "styled-components";
 
 export const ImageSlide = styled.div`
 
+
+    max-width: 400px;
+
+
+    @media (max-width: 768px) {
+            max-width: 300px;
+        }
+
     display: flex;
     overflow: hidden;
-    margin-bottom: 18px;
+    margin-bottom: 38px;
 
     input {
         display: none;

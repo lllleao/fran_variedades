@@ -15,7 +15,11 @@
     margin: 0 auto;
 }
 
+.gackgourndPrimary {
+    background: linear-gradient(var(--background-primary));
+}
+
 :root {
-    --background-primary: #2C5F8E;
-    --mainTextShadow: -6px 4px 18px #000;
+    --background-primary: #E8803F, #8b4a22;
+    --mainTextShadow: 4px 4px 8px #000;
 }

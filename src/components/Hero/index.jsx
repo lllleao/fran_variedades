@@ -65,7 +65,7 @@ const Hero = ({ images }) => {
             <div className={`${style.containerHero} container`}>
                 <div className={style.heroCall}>
                     <h1 className={style.heroTitle}>
-                        O LIMITE É SUA IMAGINAÇÃO
+                        FRAN VARIEDADES
                     </h1>
                     <button className={style.heroButton} type="button">GARANTA JÁ O SEU</button>
                 </div>
